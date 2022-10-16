@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Threading;
 using System.Runtime.InteropServices;
 using RGiesecke.DllExport;
 
@@ -36,6 +37,9 @@ namespace RPTReflection {
 			[MarshalAs(UnmanagedType.LPStr)] string function) {
 			output.Append(function);
 			output.Append($"This was call number {(++numberOfCalls).ToString("D")}.");
+
+			Thread t = new Thread(() => { Thread.Sleep(1000); callback.Invoke("Name", "Function", $"Callback No: {numberOfCalls}")}); ;
+			t.Start();
 		}
 
 #if WIN64
