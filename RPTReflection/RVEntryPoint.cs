@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Runtime.InteropServices;
 using RGiesecke.DllExport;
+using System.Threading.Tasks;
 
 namespace RPTReflection {
 	public class RVEntryPoint {
-
 		public delegate int ExtensionCallback([MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string function, [MarshalAs(UnmanagedType.LPStr)] string data);
 		public static ExtensionCallback callback;
 		private static int numberOfCalls = 0;
@@ -33,13 +33,13 @@ namespace RPTReflection {
 #else
 		[DllExport("_RVExtension@12", CallingConvention = CallingConvention.Winapi)]
 #endif
-		public static void RvExtension(StringBuilder output, int outputSize,
-			[MarshalAs(UnmanagedType.LPStr)] string function) {
-			output.Append(function);
-			output.Append($"This was call number {(++numberOfCalls).ToString("D")}.");
-
-			Thread t = new Thread(() => { Thread.Sleep(1000); callback.Invoke("Name", "Function", $"Callback No: {numberOfCalls}")}); ;
-			t.Start();
+		public static void RvExtension(StringBuilder output, int outputSize, [MarshalAs(UnmanagedType.LPStr)] string function) {
+			int callNumber = Interlocked.Increment(ref numberOfCalls);
+			output.Append($"function: {function}. This was call number {callNumber:D}.");
+			_ = Task.Run(async () => {
+				await Task.Delay(1000);
+				callback.Invoke($"name: {nameof(RPTReflection)}", $"function: {function}", $"Callback No: {callNumber:D}");
+			});
 		}
 
 #if WIN64
@@ -48,10 +48,8 @@ namespace RPTReflection {
 		[DllExport("_RVExtensionArgs@20", CallingConvention = CallingConvention.Winapi)]
 #endif
 		public static int RvExtensionArgs(StringBuilder output, int outputSize, [MarshalAs(UnmanagedType.LPStr)] string function, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 4)] string[] args, int argCount) {
-			foreach (var arg in args) {
-				output.Append(arg);
-			}
-			return 0;
-		}
-	}
+			output.Append(string.Join(", ", args));
+            return 0;
+        }
+    }
 }

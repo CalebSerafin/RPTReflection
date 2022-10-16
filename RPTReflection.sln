@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CallRPTReflection", "CallRPTReflection\CallRPTReflection.vcxproj", "{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,18 @@ Global
 		{5B1C9B18-AA26-4F35-A9C6-C07B21636C8D}.Release|x64.Build.0 = Release|x64
 		{5B1C9B18-AA26-4F35-A9C6-C07B21636C8D}.Release|x86.ActiveCfg = Release|x86
 		{5B1C9B18-AA26-4F35-A9C6-C07B21636C8D}.Release|x86.Build.0 = Release|x86
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Debug|Any CPU.Build.0 = Debug|x64
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Debug|x64.ActiveCfg = Debug|x64
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Debug|x64.Build.0 = Debug|x64
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Debug|x86.ActiveCfg = Debug|Win32
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Debug|x86.Build.0 = Debug|Win32
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Release|Any CPU.ActiveCfg = Release|x64
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Release|Any CPU.Build.0 = Release|x64
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Release|x64.ActiveCfg = Release|x64
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Release|x64.Build.0 = Release|x64
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Release|x86.ActiveCfg = Release|Win32
+		{26CFB16F-B0CA-465F-81E9-F49F4190C3C0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
